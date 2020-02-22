@@ -21,6 +21,8 @@ namespace NetSpace
 
         void Start()
         {
+            // for switching from menu scene to network scene
+            DontDestroyOnLoad(gameObject);
             TriesToConnectToMaster = false;
             TriesToConnectToRoom = false;
         }
@@ -28,10 +30,10 @@ namespace NetSpace
         
         void Update()
         {
-            // Active when we are not connected and we do not try to connect to master, so the user can click
-            BtnConnectMaster.gameObject.SetActive(!PhotonNetwork.IsConnected && !TriesToConnectToMaster);
-            // Active when we are connected and we do not try to connect to Master or Room 
-            BtnConnectRoom.gameObject.SetActive(PhotonNetwork.IsConnected && !TriesToConnectToMaster && !TriesToConnectToRoom);
+            if (BtnConnectMaster != null)
+                BtnConnectMaster.gameObject.SetActive(!PhotonNetwork.IsConnected && !TriesToConnectToMaster);
+            if (BtnConnectRoom != null)
+                BtnConnectRoom.gameObject.SetActive(PhotonNetwork.IsConnected && !TriesToConnectToMaster && !TriesToConnectToRoom);
         }
 
         public void OnClickConnectToMaster()
@@ -39,7 +41,7 @@ namespace NetSpace
             // Settings
             PhotonNetwork.OfflineMode = false;      // true would fake online connection
             PhotonNetwork.NickName = "Player";
-            PhotonNetwork.AutomaticallySyncScene = true;        // to call PhotonNetwork.LoadLevel()
+            //PhotonNetwork.AutomaticallySyncScene = true;        // to call PhotonNetwork.LoadLevel()
             PhotonNetwork.GameVersion = "v1";                           // only players with same version can play together
 
             TriesToConnectToMaster = true;

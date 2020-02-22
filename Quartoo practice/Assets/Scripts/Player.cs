@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace High_Sea_Hustle
 {
-    public string playerName = "";
-    public bool isFirstPlayer = false;
-    public enum Avatar
+    public class Player : MonoBehaviour
     {
-        malePirate,
-        femalePirate,
-        maleNavy,
-        femaleNavy,
+        public string playerName = "";
+        public bool isFirstPlayer = false;
+        public enum Avatar
+        {
+            malePirate,
+            femalePirate,
+            maleNavy,
+            femaleNavy,
+        }
     }
 }
