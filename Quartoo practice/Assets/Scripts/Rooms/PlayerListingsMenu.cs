@@ -98,6 +98,12 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             }
         }        
     }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        _roomsCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClick_LeaveRoom();
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         AddPlayerListing(newPlayer);
