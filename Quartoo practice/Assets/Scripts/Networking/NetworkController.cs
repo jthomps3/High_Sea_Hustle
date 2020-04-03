@@ -101,6 +101,11 @@ public class NetworkController : MonoBehaviour
         {
             PhotonNetwork.LeaveRoom();
 
+            while (!PhotonNetwork.IsConnectedAndReady)
+            {
+                return;
+            }
+
             RoomOptions roomOps = new RoomOptions()
             {
                 IsVisible = false,                  // don't show this one in the room list

@@ -135,6 +135,10 @@ public class StartRoom : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public void OnCreateGameButtonClicked()
     {
         Debug.Log("F: StartRoom.cs/ public void OnCreateGameButtonClicked - Create button clicked");
+        while (!PhotonNetwork.IsConnectedAndReady)
+        {
+            return;
+        }
         CreateRoom();
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
             Debug.Log("You are master client");
